@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace App\Router;
 
 use Nette;
-use Nette\Application\Routers\RouteList;
-
+use Nette\Application\Routers\SimpleRouter;
 
 final class RouterFactory
 {
 	use Nette\StaticClass;
 
-	public static function createRouter(): RouteList
+	public static function createRouter(): SimpleRouter
 	{
-		$router = new RouteList;
-		$router->addRoute('<presenter>/<action>', 'Homepage:default');
-		return $router;
+		return new SimpleRouter([
+            'presenter' => 'Nette:Micro',
+            'callback' => function () {echo 'OK';},
+        ]);
 	}
 }
